@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/DCStyle.css">
+</head>
+
+<body>
+    <h1>Search Results for "<%= searchQuery %>"</h1>
+    <div class="results-heading">
+        
+
+        <script>
+            // Fetch the user_name from the /get-username endpoint
+            fetch('http://localhost:3000/get-username')
+                .then(response => response.text())  // Assuming the server sends plain text
+                .then(data => {
+                    // Display the response from the server in the div
+                    document.getElementById('welcome-message').innerText = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching user name:', error);
+                });
+        </script>
+
+        
+            <p><div id="welcome-message">Loading...</div></p>
+    
+
+        <% if (count === 0) { %>
+            <p>No results found for "<%= searchQuery %>".</p>
+        <% } else { %>
+            <p>Found <%= count %> results for "<%= searchQuery %>".</p>
+        <% } %>
+
+        <!-- Back to Search Button -->
+        <a href="/" class="back-button">Back to Search</a>
+    </div>
+
+    <ul>
+        <% let runningCount = 1; %> <!-- Initialize a running counter -->
+        <% comics.forEach(function(comic) { %>
+            <div class="container"> <div class="grade-info">
+                <li>
+                  <hr class="divider">
+                  <!-- Display the running count and total -->
+                  <h4><strong>Comic #: <%= runningCount %> of <%= count %> </strong> <%= comic.title %> by <%= comic.publisher %></h4>
+                    <p style="display: inline;"><strong>Creators and Roles:</strong> <%= comic.creators_and_roles %></p> 
+                    <p style="display: inline;"><strong>Series:</strong> <%= comic.series %></p> 
+                    <p style="display: inline;"><strong>Released:</strong> <%= comic.comic_release_date %></p>  
+                    <form action="/add-to-list" method="POST" >
+                        <input type="hidden" name="comic_id" value="<%= comic.comic_id %>">
+                        <input type="text" name="list_name" placeholder="Enter list name" required>
+                        <button type="submit">Add to List</button>
+                    </form>
+                </li>
+            </div> </div>
+
+            <% runningCount++; %> <!-- Increment the running count for the next comic -->
+        <% }); %>
+    </ul>
+
+    <!-- Back to Search Button -->
+    <br><a href="/" class="back-button">Back to Search</a>
+
+</body>
+</html>

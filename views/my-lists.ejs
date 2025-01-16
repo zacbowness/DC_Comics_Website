@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Comic Lists</title>
+    <link rel="stylesheet" href="/DCStyle.css">
+
+</head>
+<body>
+
+
+
+
+
+    <div class="container">
+        <h1>Your Comic Lists</h1>
+        <% if (lists.length > 0) { %>
+            <ul>
+                <% lists.forEach(function(list) { %>
+                    <li>
+                        <a href="/list/<%= list.list_id %>"><%= list.list_name %></a> for <%= list.user_name %>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>You have no comic lists. Create one now!</p>
+        <% } %>
+        
+    <div id="welcome-message">Loading...</div>
+
+    <script>
+        // Fetch the user_name from the /get-username endpoint
+        fetch('http://localhost:3000/get-username')
+            .then(response => response.text())  // Assuming the server sends plain text
+            .then(data => {
+                // Display the response from the server in the div
+                document.getElementById('welcome-message').innerText = data;
+            })
+            .catch(error => {
+                console.error('Error fetching user name:', error);
+            });
+    </script>
+
+        <a href="/" class="back-button">Back to Search</a>
+    </div>
+</body>
+</html>

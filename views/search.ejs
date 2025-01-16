@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comic Search</title>
+    <link rel="stylesheet" href="/DCStyle.css">
+</head>
+<body>
+    
+    <div class="results-container">
+
+        <h1>Search Comics</h1>
+        <form action="/results" method="get">
+            <label for="searchContributor">Search for Comics by Creator:</label>
+            <input type="text" id="searchContributor" name="search" placeholder="Enter creator's name (e.g. 'Aaron')" ><br/>
+            <label for="searchComic">Search for Comics:</label>
+            <input type="text" id="searchComic" name="search" placeholder="Enter Comic Info (e.g. 'Bat')" required> 
+            <button type="submit">Search</button>
+        </form>
+
+        <br/><div class="results-heading" id="welcome-message">Loading...</div>
+
+        <script>
+            // Fetch the user_name from the /get-username endpoint
+            fetch('http://localhost:3000/get-username')
+                .then(response => response.text())  // Assuming the server sends plain text
+                .then(data => {
+                    // Display the response from the server in the div
+                    document.getElementById('welcome-message').innerText = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching user name:', error);
+                });
+        </script>
+        <a href="/set-username" class="back-button">Set User Name</a>
+        <a href="/my-lists" class="back-button">View User Lists</a>
+        <a href="/comics/add" class="back-button">Add New Comic</a>
+        <a href="/add-user" class="back-button">Add New User</a>
+        <a href="/users" class="back-button">List of users</a>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:white;
+    text-align: left;
+}
+
+.search-container,.container, .results-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3px;
+    background-color: rgb(168, 219, 168);
+    box-shadow: 0 4px 8px rgba(191, 211, 117, 0.1);
+}
+
+.grade-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(168, 219, 168);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.results-heading {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: rgb(246, 249, 246);
+    box-shadow: 0 4px 8px rgba(191, 211, 117, 0.1);
+}
+
+small {
+    font-size: 0.85em;
+    color: #777;
+}
+
+a {
+  color: #237cdb;  
+}
+
+select {
+    margin: 10px 0;
+    padding: 8px;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+
+button[type="reset"] {
+    background-color: #f44336;
+}
+
+h1 {
+    text-align: center;
+    color: #7566c7;
+}
+h4 {
+    color: black;
+}
+
+    
+form {
+    width: 900px;
+    text-align: left;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+    
+.formGrade {
+    width: 900px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* Divider line */
+.divider {
+    border: none;
+    border-top: 1px solid hsl(0, 93%, 17%);
+    margin: 10px 0;
+}
+
+/* Grade Information Styling */
+.grade-info {
+    border: 1px solid #580202;
+    padding: 5px;
+    margin-top: 5px;
+    background-color: rgb(115, 241, 193);
+    width: 80%; 
+    text-align: right; 
+    margin-left: auto; 
+}
+
+.grade-info h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.grade-info p {
+    margin: 5px 0;
+}
+
+.grade-info strong {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 50%;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #52a1f7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+label{
+    color: #6688c7;
+}
+
+
+strong {
+    font-weight: bold;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-button:hover {
+    background-color: #218838;
+}

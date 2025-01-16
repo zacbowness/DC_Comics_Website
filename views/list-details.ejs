@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comics in List</title>
+    <link rel="stylesheet" href="/DCStyle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Comics in Your List</h1>
+        <a href="/my-lists" class="back-button">Back to Your Lists</a>
+        <a href="/" class="back-button">Back to Search</a>
+        
+        <div id="welcome-message">Loading...</div>
+
+        <script>
+            // Fetch the user_name from the /get-username endpoint
+            fetch('http://localhost:3000/get-username')
+                .then(response => response.text())  // Assuming the server sends plain text
+                .then(data => {
+                    // Display the response from the server in the div
+                    document.getElementById('welcome-message').innerText = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching user name:', error);
+                });
+        </script>
+        <% if (comics.length > 0) { %>
+            <ul>
+                <% comics.forEach(function(comic) { %>
+                    <li>
+                        <hr class="divider">
+                        <h3><%= comic.title %> (list: <%= comic.listname %>)</h3>
+
+                        <!-- Comic details in a flexbox container -->
+                        <div class="comic-details">
+                            <!-- Comic Cover Image -->
+                            <div class="comic-image">
+                                <% if (comic.cover_image_url) { %>
+                                    <img src="/uploads/<%= comic.cover_image_url %>" alt="Cover image for <%= comic.title %>" class="comic-cover">
+                                    <form action="/update-comic-cover/<%= comic.comic_id %>" method="POST" enctype="multipart/form-data">
+                                        <label for="cover_image">Update Comic Cover Image:</label>
+                                        <input type="hidden" name="list_id" value="<%= list_id %>">
+                                        <input type="file" id="cover_image" name="cover_image" accept="image/*">
+                                        <button type="submit">Update Cover Image</button>
+                                    </form>
+                                            <!-- Delete Cover Image Form -->
+                                    <form action="/delete-comic-cover/<%= comic.comic_id %>" method="POST">
+                                        <input type="hidden" name="list_id" value="<%= list_id %>">
+                                        <button type="submit">Delete Cover Image</button>
+                                    </form>
+                                <% } else { %>
+                                    <!-- Comic cover image upload form -->
+                                    <form action="/upload-comic-cover/<%= comic.comic_id %>" method="POST" enctype="multipart/form-data">
+                                        <label for="cover_image">Upload Comic Cover Image:</label>
+                                        <input type="hidden" name="list_id" value="<%= list_id %>">
+                                        <input type="file" id="cover_image" name="cover_image" accept="image/*">
+                                        <button type="submit">Upload</button>
+                                    </form>
+                                <% } %>
+                            </div>
+
+                            <!-- Comic Details -->
+                            <div class="comic-info">
+                                <div class="grade-info">
+                                    <p><strong>Publisher:</strong> <%= comic.publisher %> <%= comic.version %> |
+                                    <strong>Release Date:</strong> <%= comic.comic_release_date %> |
+                                    <!-- Display Creators -->
+                                    <% if (comic.creators.length > 0) { %>
+                                         <% comic.creators.forEach(function(creator) { %>
+                                                <strong><%= creator.contributorRole %>:</strong> <%= creator.creator_name %>
+                                            <% }); %>
+                                    <% } else { %>
+                                        <p>No contributors available.</p>
+                                    <% } %>
+                                    </p>
+                                    <!-- <a href="/comics/edit/<%= comic.comic_id %>">Edit</a> -->
+                                </div>
+
+                                <!-- Display Existing Grade Information -->
+                                <% if (comic.grade_company_title) { %>
+                                    <div class="grade-info"><h4>Grade Information</h4>
+                                        <p>
+                                            <strong>Grade Company:</strong> <%= comic.grade_company_title %> |
+                                            <strong>Grade Number:</strong> <%= comic.grade_number %> |
+                                            <strong>Description:</strong> <%= comic.grade_description %> |
+                                            <strong>Colour:</strong> <%= comic.grade_colour %>
+                                        </p>
+                                        <a href="/edit-grade/<%= comic.comic_id %>">Update Grade</a>
+                                    </div>
+                                <% } else { %>
+                                    <p>No grade information available yet. 
+                                        <a href="/setup-add-grade/<%= comic.comic_id %>">Add/Update Grade</a>
+                                    </p>
+                                <% } %>
+                                
+                            </div>
+                        </div> <!-- End of comic-details -->
+                        <!-- Remove Comic Form -->
+                        <form action="/remove" method="POST">
+                            <input type="hidden" name="comic_id" value="<%= comic.comic_id %>">
+                            <input type="hidden" name="list_id" value="<%= list_id %>">
+                            <button type="submit">Remove comic from List</button>
+                        </form>
+                        <form action="/deleteComic/<%= comic.comic_id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this comic from COMIC DATABASE?');">
+                            <button type="submit">Delete Comic (FROM Database) - <%= comic.title %></button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>This list is empty.</p>
+        <% } %>
+
+        <a href="/my-lists" class="back-button">Back to Your Lists</a>
+        <a href="/" class="back-button">Back to Search</a>
+    </div>
+</body>
+</html>

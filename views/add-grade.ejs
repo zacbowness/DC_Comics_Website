@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Grade to Comic Book</title>
+    <link rel="stylesheet" href="/DCStyle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add Grade to Comic Book</h1>
+        
+        <!-- Displaying the comic ID properly -->
+        <p>For Comic: <%= comic_id %></p>
+
+        <form action="/add-grade" method="POST">
+            <!-- Hidden field to store comic_id -->
+            <input type="hidden" name="comic_id" value="<%= comic_id %>">
+
+            <!-- Select Grade Company -->
+            <label for="company">Select Grade Company</label>
+            <select name="company" required>
+                <option value="">-- Select Grade Company --</option>
+                <% gradeCompanies.forEach(function(company) { %>
+                    <option value="<%= company.grade_company %>"><%= company.grade_company_title %></option>
+                <% }); %>
+            </select>
+
+            <!-- Grade Number Input (dropdown for predefined values) -->
+            <label for="number">Grade Number</label>
+            <select name="number" required>
+                <option value="">-- Select Grade Number --</option>
+                <option value="10.0">10.0 GM - Gem Mint (slabbed comics only)</option>
+                <option value="9.9">9.9 M - Mint (slabbed comics only)</option>
+                <option value="9.8">9.8 NM/M - Near Mint/Mint</option>
+                <option value="9.6">9.6 NM+ - Near Mint+</option>
+                <option value="9.4">9.4 NM - Near Mint</option>
+                <option value="9.2">9.2 NM- - Near Mint-</option>
+                <option value="9.0">9.0 VF/NM - Very Fine/Near Mint</option>
+                <option value="8.5">8.5 VF+ - Very Fine+</option>
+                <option value="8.0">8.0 VF - Very Fine</option>
+                <option value="7.5">7.5 VF- - Very Fine-</option>
+                <option value="7.0">7.0 FN/VF - Fine/Very Fine</option>
+                <option value="6.5">6.5 FN+ - Fine+</option>
+                <option value="6.0">6.0 FN - Fine</option>
+                <option value="5.5">5.5 FN- - Fine-</option>
+                <option value="5.0">5.0 VG/FN - Very Good/Fine</option>
+                <option value="4.5">4.5 VG+ - Very Good+</option>
+                <option value="4.0">4.0 VG - Very Good</option>
+                <option value="3.5">3.5 VG- - Very Good-</option>
+                <option value="3.0">3.0 GD/VG - Good/Very Good</option>
+                <option value="2.5">2.5 GD+ - Good+</option>
+                <option value="2.0">2.0 GD - Good</option>
+                <option value="1.8">1.8 GD- - Good-</option>
+                <option value="1.5">1.5 FR/GD - Fair/Good</option>
+                <option value="1.0">1.0 FR - Fair</option>
+                <option value="0.5">0.5 PR - Poor</option>
+            </select>
+            <small>Select the grade number based on the comic's condition.</small>
+
+            <!-- Grade Description -->
+            <label for="grade_description">Grade Description</label>
+            <input type="text" name="grade_description" required>
+            <small>A short description about the grade, e.g., "Near Mint".</small>
+
+            <!-- Colour Input (dropdown for predefined values) -->
+            <label for="colour">Colour (Indicates modification of the Comic Book)</label>
+            <select name="colour" required>
+                <option value="">-- Select Colour --</option>
+                <option value="Red">Red - Verified Signature</option>
+                <option value="Yellow">Yellow - Witnessed Signature</option>
+                <option value="Green">Green - Modified Comic</option>
+                <option value="Blue">Blue - Unmodified Comic</option>
+            </select>
+            <small>Select the grade colour based on the comic's condition.</small>
+
+            <!-- Submit and Reset Buttons -->
+            <button type="submit">Add Grade</button>
+            <button type="reset">Reset Form</button>
+            <a href="/" class="back-button">Back to Search</a>
+        </form>
+    </div>
+</body>
+</html>

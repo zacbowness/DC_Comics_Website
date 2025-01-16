@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Comic</title>
+    <link rel="stylesheet" href="/DCStyle.css">
+    <style>
+        /* Align label and select on the same line */
+        .role-selection {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px; /* Reduces space between rows */
+        }
+
+        .role-selection label {
+            margin-right: 10px; /* Space between label and select */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .role-selection select {
+            width: 200px; /* Adjust the width of the select dropdown */
+        }
+        
+        form {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Edit Comic: <%= comic.title %></h1>
+    <form action="/comics/edit/<%= comic.comic_id %>" method="POST">
+       
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="<%= comic.title %>" required>
+      
+            <label for="release_date">Release Date:</label>
+            <input type="date" id="release_date" name="release_date" value="<%= comic.comic_release_date %>" required>
+
+            <label for="version">Version:</label>
+            <input type="text" id="version" name="version" value="<%= comic.version %>">
+
+            <label for="publisher">Publisher:</label>
+            <input type="text" id="publisher" name="publisher" value="<%= comic.publisher || 'DC Comics' %>">
+
+            <% 
+            // Define the roles you want to provide
+            const roles = [
+                { value: "Colourists", label: "Colourist" },
+                { value: "Cover_Artists", label: "Cover Artist" },
+                { value: "Editors", label: "Editor" },
+                { value: "Executive_Editors", label: "Editor Editor" },
+                { value: "Illustrators", label: "Illustrator" },
+                { value: "Inkers", label: "Inker" },
+                { value: "Letterers", label: "Letterer" },
+                { value: "Pencilers", label: "Penciler" },
+                { value: "Writers", label: "Writer" }
+            ];
+            %>
+        
+            <% roles.forEach(role => { %>
+                <div class="role-selection">
+                    <label for="<%= role.value %>">Update <%= role.label %>:</label>
+                    <input 
+                        type="text" 
+                        id="<%= role.value %>" 
+                        name="<%= role.value %>" 
+                        placeholder="Start typing a creator..." 
+                        list="creator-suggestions-<%= role.value %>" 
+                        autocomplete="off"
+                        value="<%= (comic.creators && comic.creators[role.value]) ? comic.creators[role.value] : '' %>"
+                    >
+                    <datalist id="creator-suggestions-<%= role.value %>">
+                        <% creators.forEach(creator => { %>
+                            <option value="<%= creator.name %>">
+                        <% }) %>
+                    </datalist>
+                </div>
+            <% }) %>
+
+        <div>
+            <label for="series">Select Series:</label>
+            <select name="series_ids" id="series" multiple required>
+                <% series.forEach(serie => { %>
+                    <option value="<%= serie.series_id %>" <%= comic.series_ids.includes(serie.series_id) ? 'selected' : '' %> >
+                        <%= serie.name %>
+                    </option>
+                <% }) %>
+            </select>
+        </div>
+    
+        <button type="submit">Update Comic</button>
+    </form>
+    <a href="/my-lists" class="back-button">Back to Your Lists</a>
+    <a href="/" class="back-button">Back to Search</a>
+    </div>
+</body>
+</html>

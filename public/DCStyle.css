@@ -1,0 +1,226 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0c0c0c; /* Dark background to reflect the darker tones in DC Comics */
+    color: white; /* White text for contrast */
+    text-align: left;
+}
+
+.search-container, .container, .results-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 3px;
+    background-color: #1a1a1a; /* Dark background */
+    box-shadow: 0 4px 8px rgba(191, 211, 117, 0.1);
+}
+
+.grade-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.results-heading {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: #333333; /* Slightly lighter to differentiate sections */
+    box-shadow: 0 4px 8px rgba(191, 211, 117, 0.1);
+}
+
+small {
+    font-size: 0.85em;
+    color: #bbb; /* Lighter grey text */
+}
+
+a {
+    color: #FFD700; /* DC's iconic yellow for links (Superman's belt, etc.) */
+}
+
+
+button {
+    background-color: #1E1E1E; /* Dark button background */
+    color: #FFD700; /* Golden text color */
+    border: 1px solid #FFD700; /*Matching gold border */
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333333; /* Lighter button on hover */
+    color: #FFD700; /* Keep gold text on hover */
+}
+
+button[type="reset"] {
+    background-color: #dc143c; /* Crimson red for reset buttons (reflects Wonder Woman's red) */
+}
+
+h1 {
+    text-align: center;
+    color: #FFD700; /* Yellow for headers like Superman's logo */
+}
+
+h4 {
+    text-align: center;
+    color: white; /* White for general headings */
+}
+
+form {
+    width: 100%;
+    text-align: left;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* .formGrade {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+} */
+
+.comic-cover {
+    width: 50px;
+    height: 75px;
+    text-align: center;
+}
+
+/* Styling for the comic-details container */
+.comic-details {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Styling for the comic image */
+.comic-image {
+    flex: 0 0 20%; /* Image width (adjust as needed) */
+    margin-right: 20px; /* Space between the image and the comic info */
+}
+
+.comic-cover {
+    width: 50%; /* Make image responsive */
+    height: auto;
+}
+
+/* Styling for the comic information (text details) */
+.comic-info {
+    flex: 1; /* Allow the comic info section to take up the remaining space */
+}
+
+/* Grade info section styling */
+.grade-info p {
+    margin: 5px 0;
+}
+/* Divider line */
+.divider {
+    border: none;
+    border-top: 1px solid #FFD700; /* Gold divider line */
+    margin: 10px 0;
+}
+
+/* Grade Information Styling */
+.grade-info,.comic-info {
+    border: 1px solid #FFD700; /* Gold border around grade info */
+    padding: 5px;
+    margin-top: 5px;
+    background-color: #333333; /* Dark background for grade info box */
+    width: 97%; 
+    text-align: right; 
+    margin-left: auto; 
+}
+
+.grade-info h4 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.grade-info p {
+    margin: 5px 0;
+}
+
+.grade-info strong {
+    font-weight: bold;
+    color: #FFD700; /* Bold golden text for emphasis */
+}
+/* Style for form fields */
+
+
+input[type="text"] {
+    flex-grow: 1; /* Make input/select elements grow to fill available space */
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    width: 40%;
+    margin-right: 10px;
+    background-color: #333333; /* Dark input background */
+    color: white;
+    border: 1px solid #FFD700; /* Gold border for text inputs */
+}
+
+
+input[type="text"] {
+    flex-grow: 1; /* Make input/select elements grow to fill available space */
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    width: 40%;
+    margin-right: 10px;
+    background-color: #333333; /* Dark input background */
+    color: white;
+    border: 1px solid #FFD700; /* Gold border for text inputs */
+}
+
+input[type="select"] {
+    margin: 10px 0;
+    width: 50%;
+    padding: 8px;
+    background-color: #2a2a2a; /* Dark background for select boxes */
+    color: white;
+    border: 1px solid #FFD700; /* Gold border for DC flavor */
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+label {
+    display: flex; /* Ensures the label behaves like a block-level element but inline */
+    justify-content: flex-start;
+    min-width: 80px; /* Minimum width for label */
+    margin-bottom: 8px; /* Optional: space below the label */
+    font-weight: bold; /* Optional: make label text bold */
+    color: #FFD700; /* Gold labels */
+}
+
+strong {
+    font-weight: bold;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1E1E1E; /* Dark button background */
+    color: #FFD700; /* Golden text */
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-button:hover {
+    background-color: #333333; /* Lighter button on hover */
+    color: #FFD700; /* Keep golden text on hover */
+}
